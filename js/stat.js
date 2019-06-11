@@ -42,15 +42,15 @@ window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, COLOR_SHADOW);
   renderCloud(ctx, CLOUD_X, CLOUD_Y, COLOR_CLOUD);
 
-  var victoryText = function (text, line) {
+  var getVictoryText = function (text, line) {
     return ctx.fillText(text, TEXT_VICTORY_POSITION_X, TEXT_VICTORY_POSITION_Y + GAP_TITLE * line);
   };
 
   ctx.font = '16px PT Mono';
   ctx.fillStyle = '#000';
   ctx.textBaseline = 'hanging';
-  victoryText(TEXT_VICTORY, 1);
-  victoryText(TEXT_RESULTS, 2);
+  getVictoryText(TEXT_VICTORY, 1);
+  getVictoryText(TEXT_RESULTS, 2);
 
   var maxTime = getMaxElement(times);
 
