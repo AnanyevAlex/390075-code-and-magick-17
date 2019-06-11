@@ -54,7 +54,7 @@ window.renderStatistics = function (ctx, names, times) {
 
   var maxTime = getMaxElement(times);
 
-  var colorBar = function (playerName) {
+  var getColorBar = function (playerName) {
     if (playerName === 'Вы') {
       return USER_BAR_COLOR;
     } else {
@@ -64,11 +64,11 @@ window.renderStatistics = function (ctx, names, times) {
     }
   };
 
-  var playerBar = function (playerName, position) {
+  var createPlayerBar = function (playerName, position) {
     ctx.fillStyle = FONT_COLOR;
     ctx.fillText(playerName, USER_NAME_POSITION_X + (BAR_WIDTH + TEXT_GAP) * position, USER_NAME_POSITION_Y);
     ctx.fillText(score, USER_NAME_POSITION_X + (BAR_WIDTH + TEXT_GAP) * position, barTopGap - GAP * 2);
-    ctx.fillStyle = colorBar(playerName);
+    ctx.fillStyle = getColorBar(playerName);
     ctx.fillRect(USER_NAME_POSITION_X + (BAR_WIDTH + TEXT_GAP) * position, barTopGap, BAR_WIDTH, barHeight);
   };
 
@@ -76,7 +76,7 @@ window.renderStatistics = function (ctx, names, times) {
     var barHeight = (MAX_BAR_HEIGHT * times[i]) / maxTime;
     var barTopGap = BAR_Y + (MAX_BAR_HEIGHT - barHeight);
     var score = Math.round(times[i]);
-    playerBar(names[i], i);
+    createPlayerBar(names[i], i);
 
   }
 };
